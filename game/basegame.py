@@ -20,10 +20,13 @@ class BaseGame:
             user_guess_str = str(input("Please input your guess: "))
 
             if self.validate_input(user_guess_str):
-                result_array = util.check_guess_with_random_code(user_guess_str, self.random_code)
+                #convert user_guess_str to array
+                user_guess_split_array = user_guess_str.split(",")
+
+                result_array = util.check_guess_with_random_code(user_guess_split_array, self.random_code)
 
                 #TODO: do check of result_array here
-                
+
 
             else:
                 print("Please enter an appropriate guess")
