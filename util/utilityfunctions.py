@@ -61,3 +61,17 @@ def custom_sorting_order(value):
         return 2
     elif value is "Empty":
         return 3
+    
+    
+# this function validates result_array
+# it returns true if all values inside the result_array are "Black"
+# it returns false if any value inside is "White" or "Empty"
+def validate_result_array(result_array):
+    result_array_validated = True
+
+    for i in range(len(result_array)):
+        if result_array[i] is "White" or result_array[i] is "Empty":
+            result_array_validated = False
+            break
+
+    return result_array_validated

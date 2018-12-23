@@ -14,19 +14,22 @@ class BaseGame:
 
     # play game function, acts sort of main function here
     def play_game(self):
+        print("Guess should be entered with numbers separated by comma")
+        print("e.g. for number_of_pegs = 1,2,3,4")
+
         while not self.is_solved:
-            print("Guess should be entered with numbers separated by comma")
-            print("e.g. for number_of_pegs = 1,2,3,4")
             user_guess_str = str(input("Please input your guess: "))
 
             if self.validate_input(user_guess_str):
-                #convert user_guess_str to array
+                # convert user_guess_str to array
                 user_guess_split_array = user_guess_str.split(",")
-
                 result_array = util.check_guess_with_random_code(user_guess_split_array, self.random_code)
 
-                #TODO: do check of result_array here
-
+                if util.validate_result_array(result_array):
+                    self.is_solved = True
+                    print("Congratulations! You broke the code!")
+                else:
+                    print("Following results: " + str(result_array))
 
             else:
                 print("Please enter an appropriate guess")
@@ -59,9 +62,3 @@ class BaseGame:
             print("Your guess was empty. Please enter an appropriate guess.")
 
         return input_validated
-
-    def generate_regex(self):
-        start_regex_str = "^"
-        comma_regex_str = ","
-        number_regex_str = "[0-9]"
-        end_regex_str = "$"
